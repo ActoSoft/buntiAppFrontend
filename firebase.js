@@ -8,17 +8,25 @@ var config = {
   };
   firebase.initializeApp(config);
  
-  var db = firebase.database();               
-    $(document).ready(function(){
-        db.ref('mensajes').orderByChild('date').on('child_added', function(data){
+  var db = firebase.database(); 
+                
+ 
+  $(document).ready(function(){
         
-        //db.ref().child('users'){ } 
+    var query = db.ref('mensajes').orderByChild('date');
+       
+    query.on('child_added', function(data){
             
-            $('#list').append('<li class="list-group-item"><p>'+data.val().mensaje+
-            '</p><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dialog">Aceptar</button><button type="button" class="btn btn-danger btn-sm">Rechazar</button></li>');
+            $('#list').append('<li class="list-group-item"><p>Usuario: '+data.val().mensaje+
+            '</p><p>Localización: '+data.val().locate+'</p><p>Hora: '+data.val().time+'</p><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dialog">Aceptar</button><button type="button" class="btn btn-danger btn-sm" onclick="DeleteList()">Rechazar</button></li>');
             notify();
         });
     });        
+
+    function DeleteList(id){
+        var referencia = db.ref('mensajes');  
+        referencia.child(key).remove();
+    }
 
     function notify(){
         
