@@ -13,7 +13,7 @@ db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
     ViewList.innerHTML = ''; 
     querySnapshot.forEach((doc) => {
         notify();
-        ViewList.innerHTML += `<li class="list-group-item">
+        ViewList.innerHTML += `<li class="list-group-item listStyle">
         <div class="space"><p>Usuario: ${doc.data().user}</p>
         <p class="code">${doc.id}</p></div>
         <p>Localización: ${doc.data().location}</p>
@@ -37,7 +37,8 @@ function DeleteList(id) {
             db.collection("service").doc(id).delete().then(function() {
                 console.log("Document successfully deleted!");
                 $('#DialogDelete').modal('hide');
-                $('.toast').toast('hide');
+                $('#ToastC').toast('hide');
+                $('#ToastD').toast('show');
             }).catch(function(error) {
                 console.error("Error removing document: ", error);
             });
@@ -47,7 +48,8 @@ function DeleteList(id) {
 
 // Save Info
 function Save(){
-  var time = document.getElementById('time').value;
+  var timeNum = document.getElementById('time').value;
+  var time = timeNum +" minutos";
   db.collection("serviceTime").add({
       time: time,
   })
@@ -85,7 +87,7 @@ function notify(){
    var exactTime = "Hoy, "+ hour + ":" + minute + temp;
    document.getElementById('moment').innerHTML= exactTime;
     $(document).ready(function(){
-        $('.toast').toast('show');
+        $('#ToastC').toast('show');
       });
       var audio = document.getElementById("audio");
 
