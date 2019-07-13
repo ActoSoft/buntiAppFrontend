@@ -4,40 +4,86 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
         <link rel="stylesheet" href="./styles.css">
         <title>BüntiApp</title>
     </head>
     <body>
-        <h1>BuntiApp</h1>
+        <h1>BuntiApp</h1>      
         <!-- ListView -->
         <div>
             <ul class="list-group" id="ListView"></ul>
         </div>
             
-            <!-- Dialog -->
+            <!-- Dialog Form-->
             <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header them bg-info">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Datos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
                     <div class="modal-body">
-                    Datos del viaje. 
+                    <p>Tiempo:</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="time" aria-describedby="inputGroupPrepend2" required>    
+                        <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupPrepend2">minutos</span>
+                        </div>        
+                    </div>                   
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Aceptar</button>
+                    <button type="button" class="btn btn-info" id="btn-save">Aceptar</button>
                     </div>
                 </div>
                 </div>
             </div>
 
+            <!-- Dialog Danger -->
+            <div class="modal fade" id="DialogDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header  them bg-danger">
+                    <h5 class="modal-title them" id="exampleModalCenterTitle">Confirme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Desea rechazar el viaje? 
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete">Aceptar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <!-- Notification confirmation -->
+            <div class="toast" data-delay="10000" id="myToast" style="position: absolute; top: 0; right: 0;">
+                <div class="toast-header them bg-success">
+                    <strong class="mr-auto"><i class="fa fa-grav"></i>Viaje nuevo</strong>
+                    <small id="moment" class="time"></small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <div><p>Solicitan nuestro servicio!</p></div>
+                </div>
+            </div> 
+            
+            <audio id="audio">
+                    <source type="audio/mp3" src="audio/pop.mp3">
+            </audio>
+            
         <!-- Scripts always needs to be before body closing tab, for performance optimization -->
         <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"

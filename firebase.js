@@ -7,46 +7,23 @@ var config = {
   
   var db = firebase.firestore();
 
-  // Save Info
-/*  var num = 0; 
-  function Save(){
-      var name = document.getElementById('name').value;
-      var location = document.getElementById('location').value;
-      var time = document.getElementById('time').value;
-      num=num+1 
-    db.collection("service").add({
-        user: name,
-        location: location,
-        time: time,
-        num: num,
-    })
-    .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        document.getElementById('name').value = '';
-        document.getElementById('location').value = '';
-        document.getElementById('time').value = '';
-        
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
-} 
-*/ 
-
-// View List 
+  // View List 
 var ViewList = document.getElementById('ListView');
 db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
     ViewList.innerHTML = ''; 
     querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().user}`);
+        notify();
         ViewList.innerHTML += `<li class="list-group-item">
-        <p>Usuario: ${doc.data().user}</p>
+        <div class="space"><p>Usuario: ${doc.data().user}</p>
+        <p class="code">${doc.id}</p></div>
         <p>Localización: ${doc.data().location}</p>
-        <p>Hora: ${doc.data().time}</p>
-        <p>Codigo: ${doc.id}</p>
-        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dialog">Aceptar</button>
-        <button type="button" class="btn btn-danger btn-sm" onclick="DeleteList('${doc.id}')">Rechazar</button></li>`,
-        notify()
+        <p>Hora: ${doc.data().time}</p>       
+        <button type="button" class="btn btn-info btn-sm" 
+        data-toggle="modal" onclick="DataTime()">Aceptar</button>
+        <button type="button" class="btn btn-danger btn-sm" 
+        data-toggle="modal" onclick="DeleteList('${doc.id}')">Rechazar</button></li>`
+        
+        
        
             
     });
@@ -54,16 +31,65 @@ db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
 
 // Delete List
 function DeleteList(id) {
-    db.collection("service").doc(id).delete().then(function() {
-        console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    }); 
+    $('#DialogDelete').modal('show');
+    $(document).ready(function(){
+        $("#btn-delete").click(function(){
+            db.collection("service").doc(id).delete().then(function() {
+                console.log("Document successfully deleted!");
+                $('#DialogDelete').modal('hide');
+                $('.toast').toast('hide');
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        });
+      }); 
 }    
 
-function notify(){
-        
-var notification = new Notification("Un viaje nuevo!");
-        
+// Save Info
+function Save(){
+  var time = document.getElementById('time').value;
+  db.collection("serviceTime").add({
+      time: time,
+  })
+  .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      document.getElementById('time').value = '';     
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
+} 
+
+function DataTime(){       
+    $('#dialog').modal('show');
+    $(document).ready(function(){
+        $("#btn-save").click(function(){
+            Save();
+            $('#dialog').modal('hide');
+        });
+      }); 
+  
 }
-    
+
+function notify(){ 
+   moment = new Date();
+   var hour = moment.getHours();
+   var minute = moment.getMinutes();
+   var temp = "";
+   if (hour >= 12){
+       temp = " P.M.";
+   }
+   if (hour < 12){
+    temp = " A.M.";
+    }
+   var exactTime = "Hoy, "+ hour + ":" + minute + temp;
+   document.getElementById('moment').innerHTML= exactTime;
+    $(document).ready(function(){
+        $('.toast').toast('show');
+      });
+      var audio = document.getElementById("audio");
+
+      audio.play();  
+}
+
+

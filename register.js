@@ -8,17 +8,25 @@ var config = {
   var db = firebase.firestore();
 
   // Save Info
-  var num = 0; 
+  
   function Save(){
       var name = document.getElementById('name').value;
       var location = document.getElementById('location').value;
       var time = document.getElementById('time').value;
-      num=num+1 
-    db.collection("service").add({
+      moment = new Date();
+        var year = moment.getFullYear().toString();
+        var month = (moment.getMonth()+1).toString();
+        var day = moment.getDate().toString();
+        var hour = moment.getHours().toString();
+        var minute = moment.getMinutes().toString();
+        var second = moment.getSeconds().toString();
+        var exactTime = year+month+day+hour+minute+second; 
+        console.log(exactTime);
+   db.collection("service").add({
         user: name,
         location: location,
         time: time,
-        num: num,
+        num: exactTime,
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
