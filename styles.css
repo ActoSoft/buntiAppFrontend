@@ -1,6 +1,9 @@
 .them{
     color: #fff;
 }
+.listStyle{
+    width: 40vw !important;
+}
 .code {
     text-indent: 100%;
     white-space: nowrap;
