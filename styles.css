@@ -1,5 +1,5 @@
 .them{
-    color: #fff; 
+    color: #fff;
 }
 .code {
     text-indent: 100%;
@@ -8,16 +8,16 @@
 }
 
 .toast-notify {
-   color: white; 
+   color: white;
 }
 .time {
     margin-left: 3vw;
 }
 .space {
     display: flex;
-     flex-direction: row; 
-}  
+     flex-direction: row;
+}
 .taxi {
     height: 2vw;
-    width: 1vw; 
-  } 
+    width: 1vw;
+  }

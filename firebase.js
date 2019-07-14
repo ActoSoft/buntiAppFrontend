@@ -4,28 +4,23 @@ var config = {
     projectId: "chatfirebase-51172",
   };
   firebase.initializeApp(config);
-  
   var db = firebase.firestore();
 
-  // View List 
+  // View List
 var ViewList = document.getElementById('ListView');
 db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
-    ViewList.innerHTML = ''; 
+    ViewList.innerHTML = '';
     querySnapshot.forEach((doc) => {
         notify();
         ViewList.innerHTML += `<li class="list-group-item">
         <div class="space"><p>Usuario: ${doc.data().user}</p>
         <p class="code">${doc.id}</p></div>
         <p>Localización: ${doc.data().location}</p>
-        <p>Hora: ${doc.data().time}</p>       
-        <button type="button" class="btn btn-info btn-sm" 
+        <p>Hora: ${doc.data().time}</p>
+        <button type="button" class="btn btn-info btn-sm"
         data-toggle="modal" onclick="DataTime()">Aceptar</button>
-        <button type="button" class="btn btn-danger btn-sm" 
+        <button type="button" class="btn btn-danger btn-sm"
         data-toggle="modal" onclick="DeleteList('${doc.id}')">Rechazar</button></li>`
-        
-        
-       
-            
     });
 });
 
@@ -42,8 +37,8 @@ function DeleteList(id) {
                 console.error("Error removing document: ", error);
             });
         });
-      }); 
-}    
+      });
+}
 
 // Save Info
 function Save(){
@@ -53,25 +48,24 @@ function Save(){
   })
   .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
-      document.getElementById('time').value = '';     
+      document.getElementById('time').value = '';
   })
   .catch(function(error) {
       console.error("Error adding document: ", error);
   });
-} 
+}
 
-function DataTime(){       
+function DataTime(){
     $('#dialog').modal('show');
     $(document).ready(function(){
         $("#btn-save").click(function(){
             Save();
             $('#dialog').modal('hide');
         });
-      }); 
-  
+      });
 }
 
-function notify(){ 
+function notify(){
    moment = new Date();
    var hour = moment.getHours();
    var minute = moment.getMinutes();
@@ -89,7 +83,7 @@ function notify(){
       });
       var audio = document.getElementById("audio");
 
-      audio.play();  
+      audio.play();
 }
 
 

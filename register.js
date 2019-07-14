@@ -4,11 +4,10 @@ var config = {
     projectId: "chatfirebase-51172",
   };
   firebase.initializeApp(config);
-  
+
   var db = firebase.firestore();
 
   // Save Info
-  
   function Save(){
       var name = document.getElementById('name').value;
       var location = document.getElementById('location').value;
@@ -20,7 +19,7 @@ var config = {
         var hour = moment.getHours().toString();
         var minute = moment.getMinutes().toString();
         var second = moment.getSeconds().toString();
-        var exactTime = year+month+day+hour+minute+second; 
+        var exactTime = year+month+day+hour+minute+second;
         console.log(exactTime);
    db.collection("service").add({
         user: name,
@@ -33,10 +32,9 @@ var config = {
         document.getElementById('name').value = '';
         document.getElementById('location').value = '';
         document.getElementById('time').value = '';
-        
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
     });
-}  
+}
 
