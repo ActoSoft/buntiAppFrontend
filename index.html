@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-        <script src="js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
@@ -13,10 +11,19 @@
         <title>BüntiApp</title>
     </head>
     <body>
-        <h1>BuntiApp</h1>      
+        <!-- Nav -->
+        <div class="nav">
+            <img src="./icons/logo.png" class="icon"/>
+            <h1 class="txt">Bünt´iApp</h1>
+        </div>  
         <!-- ListView -->
-        <div>
-            <ul class="list-group" id="ListView"></ul>
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm" id="ListView"></div>
+                  <div class="col-sm" id="ListView2"></div>
+                </div>
+              </div>
         </div>
             
             <!-- Dialog Form-->
@@ -24,7 +31,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header them bg-info">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Datos</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Aceptar viaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -32,7 +39,7 @@
                     <div class="modal-body">
                     <p>Tiempo:</p>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="time" aria-describedby="inputGroupPrepend2" required>    
+                        <input type="number" class="form-control" id="time" aria-describedby="inputGroupPrepend2" required>    
                         <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupPrepend2">minutos</span>
                         </div>        
@@ -96,7 +103,7 @@
                 </div>
             
             <audio id="audio">
-                    <source type="audio/mp3" src="audio/pop.mp3">
+                    <source type="audio/mp3" src="./audio/pop.mp3">
             </audio>
             
         <!-- Scripts always needs to be before body closing tab, for performance optimization -->
@@ -106,6 +113,6 @@
         crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>      
-        <script type="text/javascript" src="./firebase.js"></script>    
+        <script type="text/javascript" src="./firebase-config.js"></script>    
     </body>
 </html>
