@@ -8,9 +8,9 @@ table, td {
 }
 .date-initial{
     width: 25vw !important;
-} 
+}
 .them{
-    color: #fff; 
+    color: #fff;
 }
 .code {
     text-indent: 100%;
@@ -19,25 +19,25 @@ table, td {
     text-align: right;
 }
 .color {
-   color: white !important; 
+   color: white !important;
 }
 .time {
     margin-left: 3vw;
 }
 .space {
     display: flex;
-     flex-direction: row; 
-}  
+     flex-direction: row;
+}
 .space-a {
     margin-top: 1vw;
-    margin-bottom: 1vw; 
-} 
+    margin-bottom: 1vw;
+}
 
 /* Style's navbar*/
 .icon {
     margin-right: auto;
     margin-left: 10vw;
-    height: 11vh; 
+    height: 11vh;
     width: 11vh;
     margin-bottom: 0.5vh;
     margin-top: 0.5vh;
@@ -51,10 +51,10 @@ table, td {
     font-weight: bold;
 }
 .nav {
-   background-color: #FAFF9B; 
+   background-color: #FAFF9B;
    height: 12vh;
    width: 100%;
-} 
+}
 
 /*Content & listView*/
 
@@ -66,7 +66,7 @@ table, td {
 }
 .table{
     margin-top: 0;
-    margin-bottom: 0; 
+    margin-bottom: 0;
     margin-left: auto;
     margin-right: auto;
 }
@@ -92,13 +92,13 @@ table, td {
     border-right-width: 3px;
     border-bottom-width: 3px;
     border-left-width: 3px;
-    border-radius: 10px 10px 10px 10px !important; 
-    border-color: #72AC34; 
+    border-radius: 10px 10px 10px 10px !important;
+    border-color: #72AC34;
     background: #fff;
     height: 50% !important;
 }
 
 .default{
-    margin: 0; 
+    margin: 0;
     height: 50% !important;
 }

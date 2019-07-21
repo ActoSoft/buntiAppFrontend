@@ -7,7 +7,7 @@ var config = {
     storageBucket: "chatfirebase-51172.appspot.com",
     messagingSenderId: "107651213265"
 };
-  firebase.initializeApp(config);  
+  firebase.initializeApp(config);
   var db = firebase.firestore();
 
 function Register(){
@@ -19,7 +19,7 @@ function Register(){
             firebase.auth().createUserWithEmailAndPassword(correo, pass)
             .then(function(){
                 alert("Has sido registrado!");
-                Change(); 
+                Change();
             })
             .catch(function(error) {
                 // Handle Errors here.
@@ -31,8 +31,8 @@ function Register(){
                 console.log(errorMessage);
                 // ...
              });
-             $('#dialogR').modal('hide');  
-        }); 
+             $('#dialogR').modal('hide');
+        });
       });
 }
 
@@ -42,9 +42,9 @@ function Login(){
         $("#btn-delete").click(function(){
             var correo = document.getElementById('email').value;
             var pass = document.getElementById('pass').value;
-            firebase.auth().signInWithEmailAndPassword(correo, pass)    
+            firebase.auth().signInWithEmailAndPassword(correo, pass)
             .then(function(){
-                alert("Iniciaste sesión");   
+                alert("Iniciaste sesión");
             })
             .catch(function(error) {
                 // Handle Errors here.
@@ -55,18 +55,16 @@ function Login(){
                 console.log(errorMessage);
                 // ...
             });
-            $('#DialogL').modal('hide');  
+            $('#DialogL').modal('hide');
         });
       });
 }
 function Change(){
     firebase.auth().onAuthStateChanged(function(user) {
-        
         if (user) {
             var UserName= user.displayName;
             var UserEmail = user.email;
             db.collection("users").add({
-                
                 Email: UserEmail,
             })
             .then(function(docRef) {
@@ -75,14 +73,12 @@ function Change(){
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
-            });    
+            });
         } else {
           // User is signed out.
           console.log('no existe usuario activo')
           // ...
         }
-        
-
       });
 }
 

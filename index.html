@@ -4,8 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
         <link rel="stylesheet" href="./styles.css">
         <link rel="icon" type="image/png" href="icons/taxi.png" />
         <title>BüntiApp</title>
@@ -15,7 +13,7 @@
         <div class="nav">
             <img src="./icons/logo.png" class="icon"/>
             <h1 class="txt">Bünt´iApp</h1>
-        </div>  
+        </div>
         <!-- ListView -->
         <div class="content">
             <div class="container">
@@ -25,7 +23,7 @@
                 </div>
               </div>
         </div>
-            
+ 
             <!-- Dialog Form-->
             <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -42,8 +40,8 @@
                         <input type="number" class="form-control" id="time" aria-describedby="inputGroupPrepend2" required>    
                         <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupPrepend2">minutos</span>
-                        </div>        
-                    </div>                   
+                        </div>
+                    </div>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -64,7 +62,7 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        ¿Desea rechazar el viaje? 
+                        ¿Desea rechazar el viaje?
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -73,13 +71,12 @@
                 </div>
                 </div>
             </div>
-            
             <!-- Notification confirmation -->
             <div class="toast" data-delay="10000" id="ToastC" style="position: absolute; top: 0; right: 0;">
                 <div class="toast-header them bg-success">
                     <strong class="mr-auto"><i class="fa fa-grav"></i>Viaje nuevo</strong>
                     <small id="moment" class="time"></small>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onclick="closeToast()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -87,25 +84,25 @@
                     <div><p>Solicitan nuestro servicio!</p></div>
                 </div>
             </div>
-            
+
             <!-- Notification delete -->
-            <div class="toast" id="ToastD" data-delay="1000" id="myToast" style="position: absolute; top: 0; right: 0;">
+            <div class="toast" id="ToastD" data-delay="5000" id="myToast" style="position: absolute; top: 0; right: 0;">
                     <div class="toast-header them bg-danger">
                         <strong class="mr-auto"><i class="fa fa-grav"></i> No hay viaje</strong>
                         <small class="time">Hoy</small>
-                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onclick="closeToast()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="toast-body">
-                        <div><p>viaje rechazado :(</p></div>
+                        <div><p>viaje rechazado</p></div>
                     </div>
                 </div>
-            
+
             <audio id="audio">
                     <source type="audio/mp3" src="./audio/pop.mp3">
             </audio>
-            
+
         <!-- Scripts always needs to be before body closing tab, for performance optimization -->
         <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -113,6 +110,8 @@
         crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>      
-        <script type="text/javascript" src="./firebase-config.js"></script>    
+        <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
+        <script type="text/javascript" src="./firebase-config.js"></script>
     </body>
 </html>

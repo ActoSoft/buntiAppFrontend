@@ -4,16 +4,15 @@ var config = {
     projectId: "chatfirebase-51172",
   };
   firebase.initializeApp(config);
-  
   var db = firebase.firestore();
- 
-// View List 
+
+// View List
 var ViewList = document.getElementById('ListView');
 var ViewList2 = document.getElementById('ListView2');
 db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
     ViewList.innerHTML = '';
     ViewList2.innerHTML = '';
-    var i=0; 
+    var i=0;
     querySnapshot.forEach((doc) => {
         i++;
         notify();
@@ -23,15 +22,15 @@ db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
                 <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${doc.data().User}</span></td></tr>
                 <tr><td class="data">Localización:</td><td><span class="data-info">${doc.data().Place}</span></td></tr>
                 <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${doc.data().ShippingDate}</span></td></tr>
-                <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${doc.data().ShippingTime}</span></td></tr>
+                <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${doc.data().ShippingTime}</span></td></tr>
                 <tr><td class="data">Forma de pago:</td><td><span class="data-info">${doc.data().PaymentMethod}</span></td></tr>
             </table></div>
         <div class="space">
         <label class="code">${doc.id}</label>
-        <div class="footer-content">       
-        <button type="button" class="btn btn-info btn-sm" 
+        <div class="footer-content">
+        <button type="button" class="btn btn-info btn-sm"
         data-toggle="modal" onclick="DataTime('${doc.id}')">Aceptar</button>
-        <button type="button" class="btn btn-danger btn-sm" 
+        <button type="button" class="btn btn-danger btn-sm"
         data-toggle="modal" onclick="DeleteList('${doc.id}')">Rechazar</button></div></div></list></div>`;}
         else{
         ViewList2.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
@@ -39,23 +38,22 @@ db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
                 <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${doc.data().User}</span></td></tr>
                 <tr><td class="data">Localización:</td><td><span class="data-info">${doc.data().Place}</span></td></tr>
                 <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${doc.data().ShippingDate}</span></td></tr>
-                <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${doc.data().ShippingTime}</span></td></tr>
+                <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${doc.data().ShippingTime}</span></td></tr>
                 <tr><td class="data">Forma de pago:</td><td><span class="data-info">${doc.data().PaymentMethod}</span></td></tr>
             </table></div>
         <div class="space">
         <label class="code">${doc.id}</label>
-        <div class="footer-content">       
-        <button type="button" class="btn btn-info btn-sm" 
+        <div class="footer-content">
+        <button type="button" class="btn btn-info btn-sm"
         data-toggle="modal" onclick="DataTime('${doc.id}')">Aceptar</button>
-        <button type="button" class="btn btn-danger btn-sm" 
-        data-toggle="modal" onclick="DeleteList('${doc.id}')">Rechazar</button></div></div></list></div>`; }            
-    }); 
+        <button type="button" class="btn btn-danger btn-sm"
+        data-toggle="modal" onclick="DeleteList('${doc.id}')">Rechazar</button></div></div></list></div>`; }
+    });
 });
 
 
- 
 // Delete List
-function DeleteList(id) { 
+function DeleteList(id) {
     $('#DialogDelete').modal('show');
     $(document).ready(function(){
         $("#btn-delete").click(function(){
@@ -68,11 +66,10 @@ function DeleteList(id) {
                 console.error("Error removing document: ", error);
             });
         });
-      }); 
-}    
+      }); }
 
 // Update Info & Time
-function DataTime(id){       
+function DataTime(id){
     $('#dialog').modal('show');
     $(document).ready(function(){
         $("#btn-save").click(function(){
@@ -91,22 +88,21 @@ function DataTime(id){
             return washingtonRef.update({
                 Accepted: true,
                 TimestampAccepted: exactTime,
-                WaitingTime: time,    
+                WaitingTime: time,
             })
         .then(function() {
             console.log("Document successfully updated!");
-            document.getElementById('time').value = '';    
+            document.getElementById('time').value = '';
         })
         .catch(function(error) {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
-        });           
         });
-      }); 
-  
+        });
+      });
 }
 
-function notify(){ 
+function notify(){
    moment = new Date();
    var hour = moment.getHours();
    var minute = moment.getMinutes();
@@ -125,8 +121,9 @@ function notify(){
         audio.play().catch(error => {
             console.log("Error al reproducir");
           });;
-        
-      });  
+      });
 }
 
-
+function closeToast(){
+    $('.toast').toast('hide');
+}

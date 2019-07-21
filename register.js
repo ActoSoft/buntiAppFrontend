@@ -16,7 +16,6 @@ function Save() {
   var place = document.getElementById("place").value;
   var pago = document.getElementById("pago").value;
   console.log(lat+" "+lon+" "+users);
- 
   moment = new Date();
   var year = moment.getFullYear().toString();
   var month = (moment.getMonth() + 1).toString();
@@ -24,8 +23,7 @@ function Save() {
   var hour = moment.getHours().toString();
   var minute = moment.getMinutes().toString();
   var second = moment.getSeconds().toString();
-  var date = day+"/"+month+"/"+year; 
-
+  var date = day+"/"+month+"/"+year;
   var exactTime = year + month + day + hour + minute + second;
   var temp = "";
    if (hour >= 12){
