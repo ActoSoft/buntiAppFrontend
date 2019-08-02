@@ -7,7 +7,6 @@ $(".txtb input").on("blur", function(){
 });
 
 var config = {
-  apiKey: "AIzaSyA_I_x2mljXdhCaCucr8VDS6EVssspryx0",
   authDomain: "buntiapp-82c84.firebaseapp.com",
   databaseURL: "https://buntiapp-82c84.firebaseio.com",
   projectId: "buntiapp-82c84",

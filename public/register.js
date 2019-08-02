@@ -7,7 +7,6 @@ $(".txtb input").on("focus", function(){
   });
 
 var config = {
-  apiKey: "AIzaSyA_I_x2mljXdhCaCucr8VDS6EVssspryx0",
   authDomain: "buntiapp-82c84.firebaseapp.com",
   databaseURL: "https://buntiapp-82c84.firebaseio.com",
   projectId: "buntiapp-82c84",
@@ -17,7 +16,7 @@ var config = {
 };
   firebase.initializeApp(config);
   var db = firebase.firestore();
-  
+
   function Register(){
             var correo = document.getElementById('email').value;
             var pass = document.getElementById('pass').value;
@@ -37,5 +36,5 @@ var config = {
                 console.log(errorCode);
                 console.log(errorMessage);
                 // ...
-             });      
+             });
 }
