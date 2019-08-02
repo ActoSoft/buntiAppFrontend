@@ -14,7 +14,7 @@ var config = {
 var ViewList = document.getElementById('ListView');
 var ViewList2 = document.getElementById('ListView2');
 var i = 0;
-db.collection("services").onSnapshot(async querySnapshot => {
+db.collection("services").orderBy("exactTime", "desc").onSnapshot(async querySnapshot => {
     await querySnapshot.forEach(async serviceDoc => {
         ViewList.innerHTML = '';
         ViewList2.innerHTML = '';
@@ -100,7 +100,8 @@ function DataTime(serviceId){
         })
         .then(function() {
             document.getElementById('time').value = ''
-            alert("Se ha notificado al usuario")
+            $('#ToastC').toast('hide');
+            $('#ToastA').toast('show');
         })
         .catch(function() {
             alert("Ocurrió un error al aceptar el viaje")
