@@ -80,7 +80,6 @@ function DeleteList(id) {
                     });
                 });
            });
-            
         });
       }); }
 
