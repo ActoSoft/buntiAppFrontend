@@ -5,6 +5,7 @@ html, body{
 table, td {
     padding: 0 !important;
     border-top: none !important;
+    border: 5px !important;
 }
 .date-initial{
     width: 25vw !important;
@@ -73,6 +74,13 @@ table, td {
 .data{
     text-align: right;
 }
+.data-center{
+    text-align: center;
+}
+.data-place{
+    text-align: center;
+    font-weight: bold;
+}
 .data-info{
     font-weight: bold;
     text-align: left;
@@ -97,8 +105,10 @@ table, td {
     background: #fff;
     height: 50% !important;
 }
-
 .default{
     margin: 0;
     height: 50% !important;
+}
+.column{
+    max-width: 50%;
 }

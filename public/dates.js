@@ -20,10 +20,11 @@ db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
         ViewList.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
         <table class="table">
                 <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${doc.data().User}</span></td></tr>
-                <tr><td class="data">Localización:</td><td><span class="data-info">${doc.data().Place}</span></td></tr>
                 <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${doc.data().ShippingDate}</span></td></tr>
                 <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${doc.data().ShippingTime}</span></td></tr>
                 <tr><td class="data">Forma de pago:</td><td><span class="data-info">${doc.data().PaymentMethod}</span></td></tr>
+                <tr><td class="data-center" colspan="2">Localización:</td></tr>
+                <tr><td colspan="2" class="data-place"><span>${doc.data().Place}</span></td></tr>
             </table></div>
         <div class="space">
         <label class="code">${doc.id}</label>
@@ -36,10 +37,11 @@ db.collection("service").orderBy("num", "desc").onSnapshot((querySnapshot) => {
         ViewList2.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
         <table class="table">
                 <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${doc.data().User}</span></td></tr>
-                <tr><td class="data">Localización:</td><td><span class="data-info">${doc.data().Place}</span></td></tr>
                 <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${doc.data().ShippingDate}</span></td></tr>
                 <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${doc.data().ShippingTime}</span></td></tr>
                 <tr><td class="data">Forma de pago:</td><td><span class="data-info">${doc.data().PaymentMethod}</span></td></tr>
+                <tr><td class="data-center" colspan="2">Localización:</td></tr>
+                <tr><td colspan="2" class="data-place"><span>${doc.data().Place}</span></td></tr>
             </table></div>
         <div class="space">
         <label class="code">${doc.id}</label>

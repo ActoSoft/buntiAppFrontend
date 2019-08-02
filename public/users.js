@@ -9,8 +9,8 @@ var config = {
 };
   firebase.initializeApp(config);
   var db = firebase.firestore();
-
-function Register(){
+  
+  function Register(){
     $('#dialogR').modal('show');
     $(document).ready(function(){
         $("#btn-save").click(function(){
@@ -45,6 +45,8 @@ function Login(){
             firebase.auth().signInWithEmailAndPassword(correo, pass)
             .then(function(){
                 alert("Iniciaste sesión");
+                var face="index.html" 
+        document.location.href=face;
             })
             .catch(function(error) {
                 // Handle Errors here.
