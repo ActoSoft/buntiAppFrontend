@@ -11,8 +11,9 @@
     <body>
         <!-- Nav -->
         <div class="nav">
-            <img src="./icons/logo.png" class="icon"/>
+            <img src="./icons/logo.png" class="icon" />
             <h1 class="txt">Bünt´iApp</h1>
+            <img src="./icons/logout.png" onclick="Close()" class="logout" />
         </div>
         <!-- ListView -->
         <div class="content">
@@ -71,8 +72,30 @@
                 </div>
                 </div>
             </div>
+
+            <!-- Dialog Close -->
+            <div class="modal fade" id="DialogClose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header  them bg-warning">
+                    <h5 class="modal-title them" id="exampleModalCenterTitle">Confirme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Desea cerrar sesión?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-warning" id="btn-close">Aceptar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
             <!-- Notification confirmation -->
-            <div class="toast" data-delay="10000" id="ToastC" style="position: absolute; top: 0; right: 0;">
+            <div class="toast" data-delay="10000" id="ToastC" style="position: absolute; top: 12vh; right: 0;">
                 <div class="toast-header them bg-success">
                     <strong class="mr-auto"><i class="fa fa-grav"></i>Viaje nuevo</strong>
                     <small id="moment" class="time"></small>
@@ -86,7 +109,7 @@
             </div>
 
             <!-- Notification delete -->
-            <div class="toast" id="ToastD" data-delay="5000" id="myToast" style="position: absolute; top: 0; right: 0;">
+            <div class="toast" id="ToastD" data-delay="5000" id="myToast" style="position: absolute; top: 12vh; right: 0;">
                     <div class="toast-header them bg-danger">
                         <strong class="mr-auto"><i class="fa fa-grav"></i> No hay viaje</strong>
                         <small class="time">Hoy</small>
@@ -112,6 +135,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>      
         <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
         <script type="text/javascript" src="./dates.js"></script>
     </body>
 </html>
