@@ -1,0 +1,120 @@
+html, body{
+    padding: 0;
+    margin: 0 !important;
+}
+table, td {
+    padding: 0 !important;
+    border-top: none !important;
+    border: 5px !important;
+}
+.date-initial{
+    width: 25vw !important;
+}
+.them{
+    color: #fff;
+}
+.code {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow:hidden;
+    text-align: right;
+}
+.color {
+   color: white !important;
+}
+.time {
+    margin-left: 3vw;
+}
+.space {
+    display: flex;
+     flex-direction: row;
+}
+.space-a {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+/* Style's navbar*/
+.icon {
+    margin-left: 10vw;
+    height: 11vh;
+    width: 11vh;
+    margin-bottom: 0.5vh;
+    margin-top: 0.5vh;
+}
+.txt {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 5vh;
+    margin-bottom: 4vh;
+    margin-top: 3vh;
+    font-weight: bold;
+}
+.logout{
+    margin-bottom: 3vh;
+    margin-top: 4vh;
+    margin-right: 3vw;
+    height: 5vh;
+    width: 6vh;
+}
+.nav {
+   background-color: #FAFF9B;
+   height: 12vh;
+   width: 100%;
+}
+
+/*Content & listView*/
+
+.content {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+}
+.table{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.data{
+    text-align: right;
+}
+.data-center{
+    text-align: center;
+}
+.data-place{
+    text-align: center;
+    font-weight: bold;
+}
+.data-info{
+    font-weight: bold;
+    text-align: left;
+    margin-left: 1vw;
+}
+.footer-content{
+    margin-left: auto;
+    margin-right: 1vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+.listStyle{
+    margin: 1vh;
+    margin-top: 1vh;
+    width: 100% !important;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-radius: 10px 10px 10px 10px !important;
+    border-color: #72AC34;
+    background: #fff;
+    height: 50% !important;
+}
+.default{
+    margin: 0;
+    height: 50% !important;
+}
+.column{
+    max-width: 50%;
+}
