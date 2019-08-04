@@ -8,13 +8,19 @@
   
   body{
     min-height: 100vh;
+    background-color: #FAFF9B;
   }
-  
+  .img-init{
+    height: 12vh;
+    width: 12vh;
+    display:block;
+    margin:auto;
+  } 
   .login-form{
     width: 360px;
     background: #f1f1f1;
     height: 580px;
-    padding: 80px 40px;
+    padding: 40px 40px;
     border-radius: 10px;
     position: absolute;
     left: 50%;
@@ -25,6 +31,7 @@
   .login-form h1{
     text-align: center;
     margin-bottom: 60px;
+    margin-top: 3vh;
   }
   
   .txtb{
@@ -54,7 +61,9 @@
     z-index: -1;
     transition: .5s;
   }
-  
+  a {
+    color: #1890ff;
+  }
   .txtb span::after{
     content: '';
     position: absolute;
