@@ -9,58 +9,66 @@ var config = {
   };
   firebase.initializeApp(config);
   var db = firebase.firestore();
-  var firstTime = true
+  var auth = firebase.auth();
 
-// View List
-var ViewList = document.getElementById('ListView');
-var ViewList2 = document.getElementById('ListView2');
-var i = 0;
-db.collection("services").orderBy("exactTime", "desc").onSnapshot(async querySnapshot => {
-    await querySnapshot.forEach(async serviceDoc => {
-        ViewList.innerHTML = '';
-        ViewList2.innerHTML = '';
-        notify();
-        const serviceData = await serviceDoc.data()
-        if(!serviceData.aceptado) { //Excluimos los servicios que ya han sido aceptados
-            i++;
-            if (i%2){
-                ViewList.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
-                <table class="table">
-                        <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${serviceData.usuario}</span></td></tr>
-                        <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${serviceData.fecha}</span></td></tr>
-                        <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${serviceData.hora}</span></td></tr>
-                        <tr><td class="data">Forma de pago:</td><td><span class="data-info">${serviceData.pago}</span></td></tr>
-                        <tr><td class="data-center" colspan="2">Localización:</td></tr>
-                        <tr><td colspan="2" class="data-place"><span>${serviceData.direccion}</span></td></tr>
-                    </table></div>
-                <div class="space">
-                <label class="code">${serviceData.id}</label>
-                <div class="footer-content">
-                <button type="button" class="btn btn-info btn-sm"
-                data-toggle="modal" onclick="DataTime('${serviceDoc.id}')">Aceptar</button>
-                <button type="button" class="btn btn-danger btn-sm"
-                data-toggle="modal" onclick="DeleteList('${serviceDoc.id}')">Rechazar</button></div></div></list></div>`;
-            } else {
-                ViewList2.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
-                <table class="table">
-                        <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${serviceData.usuario}</span></td></tr>
-                        <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${serviceData.fecha}</span></td></tr>
-                        <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${serviceData.hora}</span></td></tr>
-                        <tr><td class="data">Forma de pago:</td><td><span class="data-info">${serviceData.pago}</span></td></tr>
-                        <tr><td class="data-center" colspan="2">Localización:</td></tr>
-                        <tr><td colspan="2" class="data-place"><span>${serviceData.direccion}</span></td></tr>
-                    </table></div>
-                <div class="space">
-                <label class="code">${serviceData.id}</label>
-                <div class="footer-content">
-                <button type="button" class="btn btn-info btn-sm"
-                data-toggle="modal" onclick="DataTime('${serviceDoc.id}')">Aceptar</button>
-                <button type="button" class="btn btn-danger btn-sm"
-                data-toggle="modal" onclick="DeleteList('${serviceDoc.id}')">Rechazar</button></div></div></list></div>`;
-            }
+$(document).ready(function() {
+    auth.onAuthStateChanged(function(user) {
+        if(!user) {
+            location.assign('/')
         }
-    });
-});
+        else {
+            var ViewList = document.getElementById('ListView');
+            var ViewList2 = document.getElementById('ListView2');
+            var i = 0;
+            db.collection("services").orderBy("exactTime", "desc").onSnapshot(async querySnapshot => {
+                await querySnapshot.forEach(async serviceDoc => {
+                    ViewList.innerHTML = '';
+                    ViewList2.innerHTML = '';
+                    const serviceData = await serviceDoc.data()
+                    if(!serviceData.aceptado) {
+                        notify(); //Excluimos los servicios que ya han sido aceptados
+                        i++;
+                        if (i%2){
+                            ViewList.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
+                            <table class="table">
+                                    <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${serviceData.usuario}</span></td></tr>
+                                    <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${serviceData.fecha}</span></td></tr>
+                                    <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${serviceData.hora}</span></td></tr>
+                                    <tr><td class="data">Forma de pago:</td><td><span class="data-info">${serviceData.pago}</span></td></tr>
+                                    <tr><td class="data-center" colspan="2">Localización:</td></tr>
+                                    <tr><td colspan="2" class="data-place"><span>${serviceData.direccion}</span></td></tr>
+                                </table></div>
+                            <div class="space">
+                            <label class="code">${serviceData.id}</label>
+                            <div class="footer-content">
+                            <button type="button" class="btn btn-info btn-sm"
+                            data-toggle="modal" onclick="DataTime('${serviceDoc.id}')">Aceptar</button>
+                            <button type="button" class="btn btn-danger btn-sm"
+                            data-toggle="modal" onclick="DeleteList('${serviceDoc.id}')">Rechazar</button></div></div></list></div>`;
+                        } else {
+                            ViewList2.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
+                            <table class="table">
+                                    <tr class="tr"><td class="data">Usuario:</td><td><span class="data-info">${serviceData.usuario}</span></td></tr>
+                                    <tr><td class="data">Fecha de solicitud:</td><td><span class="data-info">${serviceData.fecha}</span></td></tr>
+                                    <tr><td class="data">Hora de solicitud:</td><td><span class="data-info">${serviceData.hora}</span></td></tr>
+                                    <tr><td class="data">Forma de pago:</td><td><span class="data-info">${serviceData.pago}</span></td></tr>
+                                    <tr><td class="data-center" colspan="2">Localización:</td></tr>
+                                    <tr><td colspan="2" class="data-place"><span>${serviceData.direccion}</span></td></tr>
+                                </table></div>
+                            <div class="space">
+                            <label class="code">${serviceData.id}</label>
+                            <div class="footer-content">
+                            <button type="button" class="btn btn-info btn-sm"
+                            data-toggle="modal" onclick="DataTime('${serviceDoc.id}')">Aceptar</button>
+                            <button type="button" class="btn btn-danger btn-sm"
+                            data-toggle="modal" onclick="DeleteList('${serviceDoc.id}')">Rechazar</button></div></div></list></div>`;
+                        }
+                    }
+                });
+            });
+        }
+    })
+})
 
 // Delete List
 function DeleteList(serviceId) {
@@ -159,16 +167,14 @@ function closeToast(){
 
  function Close() {
     $('#DialogClose').modal('show');
-    $(document).ready(function(){
-        $("#btn-close").click(function(){
-    firebase.auth().signOut()
-    .then(function(){
-        var page="index.html";
-        document.location.href=page;
-    })
-    .catch(function(error){
-        console.log(error)
-    })
-    });
+    $("#btn-close").click(function(){
+        firebase.auth().signOut()
+        .then(function(){
+            var page="index.html";
+            document.location.href=page;
+        })
+        .catch(function(error){
+            console.log(error)
+        })
     });
 }
