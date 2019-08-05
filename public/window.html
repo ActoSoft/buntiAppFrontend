@@ -38,11 +38,12 @@
                     <div class="modal-body">
                     <p>Tiempo:</p>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="time" aria-describedby="inputGroupPrepend2" required>
+                        <input type="number" class="form-control" id="time" aria-describedby="inputGroupPrepend2" required onchange="Validation()">
                         <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupPrepend2">minutos</span>
                         </div>
                     </div>
+                    <p id="text-notify" class="text-danger"></p>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

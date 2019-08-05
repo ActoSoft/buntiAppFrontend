@@ -77,6 +77,20 @@ function DeleteList(serviceId) {
     });
 }
 
+function Validation(){
+    var dateNum = document.getElementById('time').value;
+    var txtNotify = document.getElementById('text-notify');
+    var n = parseInt(dateNum);
+    if (n==0){
+        txtNotify.innerHTML = 'No puede ingresar 0 minutos.';
+    }
+    if (n<0){
+        txtNotify.innerHTML = `No puede ingresar ${n} minutos.`;
+    }
+    if (n>0){
+        txtNotify.innerHTML = '';
+    }
+}
 // Update Info & Time
 function DataTime(serviceId){
     $('#dialog').modal('show');
