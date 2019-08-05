@@ -14,19 +14,19 @@ var config = {
 $(document).ready(function() {
     auth.onAuthStateChanged(function(user) {
         if(!user) {
-            location.assign('/')
+            location.assign("/");
         }
         else {
-            var ViewList = document.getElementById('ListView');
-            var ViewList2 = document.getElementById('ListView2');
+            var ViewList = document.getElementById("ListView");
+            var ViewList2 = document.getElementById("ListView2");
             var i = 0;
             db.collection("services").orderBy("exactTime", "desc").onSnapshot(async querySnapshot => {
                 await querySnapshot.forEach(async serviceDoc => {
-                    ViewList.innerHTML = '';
-                    ViewList2.innerHTML = '';
+                    ViewList.innerHTML = "";
+                    ViewList2.innerHTML = "";
                     const serviceData = await serviceDoc.data()
-                    if(!serviceData.aceptado) {
-                        notify(); //Excluimos los servicios que ya han sido aceptados
+                    if(!serviceData.aceptado) { //Excluimos los servicios que ya han sido aceptados
+                        notify();
                         i++;
                         if (i%2){
                             ViewList.innerHTML += `<div class="global"><div class="default"><list class="list-group-item listStyle">
@@ -72,13 +72,13 @@ $(document).ready(function() {
 
 // Delete List
 function DeleteList(serviceId) {
-    $('#DialogDelete').modal('show');
+    $("#DialogDelete").modal("show");
     $("#btn-delete").click(function(){
         db.collection("services").doc(serviceId).delete()
         .then(function() {
-            $('#DialogDelete').modal('hide');
-            $('#ToastC').toast('hide');
-            $('#ToastD').toast('show');
+            $("#DialogDelete").modal("hide");
+            $("#ToastC").toast("hide");
+            $("#ToastD").toast("show");
         })
         .catch(function(error) {
             console.error("Error removing document: ", error);
@@ -87,31 +87,27 @@ function DeleteList(serviceId) {
 }
 
 function Validation(){
-    var dateNum = document.getElementById('time').value;
-    var txtNotify = document.getElementById('text-notify');
+    var dateNum = document.getElementById("time").value;
+    var txtNotify = document.getElementById("text-notify");
     var n = parseInt(dateNum);
-    if (n==0){
-        txtNotify.innerHTML = 'No puede ingresar 0 minutos.';
-        $('#btn-save').attr("disabled", true)
-        return false
+    if (n === 0){
+        txtNotify.innerHTML = "No puede ingresar 0 minutos.";
+        $("#btn-save").attr("disabled", true);
     }
     if (n<0){
         txtNotify.innerHTML = `No puede ingresar ${n} minutos.`;
-        $('#btn-save').attr("disabled", true)
-        return false
+        $("#btn-save").attr("disabled", true);
     }
     if (n>0){
-        txtNotify.innerHTML = '';
-        $('#btn-save').attr("disabled", false)
-        return true
+        txtNotify.innerHTML = "";
+        $("#btn-save").attr("disabled", false);
     }
-    return true
 }
 // Update Info & Time
 function DataTime(serviceId){
-    $('#dialog').modal('show');
+    $("#dialog").modal("show");
     $("#btn-save").click(function(){
-        const serviceRef = db.collection("services").doc(serviceId)
+        const serviceRef = db.collection("services").doc(serviceId);
         now = new Date();
         var year = moment.getFullYear();
         var month = (moment.getMonth()+1);
@@ -120,21 +116,22 @@ function DataTime(serviceId){
         var minute = moment.getMinutes();
         var second = moment.getSeconds();
         var exactTime = day+"/"+month+"/"+year+"  "+hour+":"+minute+":"+second;
-        var timeNum = document.getElementById('time').value;
+        var timeNum = document.getElementById("time").value;
         var time = timeNum +" minutos";
-        $('#dialog').modal('hide');
+        $("#dialog").modal("hide");
         serviceRef.update({
             aceptado: true,
             tiempo: exactTime,
             minutos: time
         })
         .then(function() {
-            document.getElementById('time').value = ''
-            $('#ToastC').toast('hide');
-            $('#ToastA').toast('show');
+            document.getElementById("time").value = "";
+            $("#ToastC").toast("hide");
+            $("#ToastA").toast("show");
         })
-        .catch(function() {
-            alert("Ocurrió un error al aceptar el viaje")
+        .catch(function(error) {
+            alert("Ocurrió un error al aceptar el viaje");
+            console.log(error);
         })
     });
 }
@@ -151,22 +148,22 @@ function notify(){
     temp = " A.M.";
     }
    var exactTime = "Hoy, "+ hour + ":" + minute + temp;
-   document.getElementById('moment').innerHTML= exactTime;
+   document.getElementById("moment").innerHTML= exactTime;
     $(document).ready(function(){
-        $('#ToastC').toast('show');
+        $("#ToastC").toast("show");
         var audio = document.getElementById("audio");
         audio.play().catch(error => {
             console.log("Error al reproducir");
-          });;
+          });
       });
 }
 
 function closeToast(){
-    $('.toast').toast('hide');
+    $(".toast").toast("hide");
 }
 
- function Close() {
-    $('#DialogClose').modal('show');
+function Close() {
+    $("#DialogClose").modal("show");
     $("#btn-close").click(function(){
         firebase.auth().signOut()
         .then(function(){
@@ -174,7 +171,7 @@ function closeToast(){
             document.location.href=page;
         })
         .catch(function(error){
-            console.log(error)
+            console.log(error);
         })
     });
 }
