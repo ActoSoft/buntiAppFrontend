@@ -84,13 +84,20 @@ function Validation(){
     var n = parseInt(dateNum);
     if (n==0){
         txtNotify.innerHTML = 'No puede ingresar 0 minutos.';
+        $('#btn-save').attr("disabled", true)
+        return false
     }
     if (n<0){
         txtNotify.innerHTML = `No puede ingresar ${n} minutos.`;
+        $('#btn-save').attr("disabled", true)
+        return false
     }
     if (n>0){
         txtNotify.innerHTML = '';
+        $('#btn-save').attr("disabled", false)
+        return true
     }
+    return true
 }
 // Update Info & Time
 function DataTime(serviceId){
